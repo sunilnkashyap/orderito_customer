@@ -1,7 +1,8 @@
 {
   "name": "E-Commerce_Ionic4",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "id": "0bafd2cd"

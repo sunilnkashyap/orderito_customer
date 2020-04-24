@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { MenuController, NavController, Platform, Events} from '@ionic/angular';
+import { MenuController, NavController, Platform, Events, ModalController} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { DataService } from './data.service';
@@ -11,6 +11,8 @@ import {Storage} from "@ionic/storage";
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import {LoaderService} from "./services/loader.service";
 import { APP_NAME, StringConstant } from "./app.stringconstant";
+
+// import { SplashPage } from './splash/splash.page';
 
 @Component({
   selector: 'app-root',
@@ -88,7 +90,8 @@ export class AppComponent {
     private event:Events,
     private loaderService: LoaderService,
     private navController: NavController,
-    private push: Push
+    private push: Push,
+    public modalCtrl: ModalController
   ) {
 
     this.showAllTypes();
@@ -105,9 +108,18 @@ export class AppComponent {
       })
   }
 
-  initializeApp() {
+  async initializeApp() {
     this.splashScreen.show();
-    this.platform.ready().then(() => {
+     this.platform.ready().then(async () => {
+
+      // const splash = await this.modalCtrl.create({
+      //   component: SplashPage
+      // });
+
+      // // const splash = this.modalCtrl.create(SplashPage);
+      // splash.present();
+
+
       // Environment.setEnv({
       //   // api key for server
       //   // 'API_KEY_FOR_BROWSER_RELEASE': 'YOUR_API_KEY_HERE',
@@ -115,7 +127,7 @@ export class AppComponent {
       //   // api key for local development
       //   'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyBTr8TEA-OpmuOHjXzeAUPQzOCCH7uGJzc'
       // });
-      //this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       // let status bar overlay webview
       // this.statusBar.overlaysWebView(true);
       this.statusBar.overlaysWebView(false);

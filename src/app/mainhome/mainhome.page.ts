@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, ElementRef} from '@angular/core';
 import {ApiService} from "../services/api.service";
-import { Events, MenuController, IonSlides, IonContent, DomController} from '@ionic/angular';
+import { Events, MenuController, IonSlides, IonContent, DomController, NavController} from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { FunctionsService } from '../functions.service';
@@ -62,9 +62,20 @@ export class MainhomePage implements OnInit {
     private splashScreen: SplashScreen,
     private event:Events,
     public modalController: ModalController,
-    private platform: Platform
+    private platform: Platform,
+    public navCtrl: NavController
   ) 
   { 
+    // this.storage.get('isSplash').then((d) => {
+    //   if(d){
+    //     console.log('Splash Screen Already displayed ', d)
+    //   } else {
+    //     console.log("show SPLASH !!!");
+    //     this.navCtrl.navigateRoot('splash');
+    //   }
+    //    }).catch(e => {
+    //   console.log("show SPLASH !!!")
+    // })
     this.initializeApp();
     this.event.subscribe('LOCATIONSEARCH', (data)=>{
       console.log(data);

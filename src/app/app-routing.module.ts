@@ -42,7 +42,10 @@ const routes: Routes = [
   // { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
   // { path: 'editprofile', loadChildren: './editprofile/editprofile.module#EditprofilePageModule' },
   // { path: 'mainhome', loadChildren: './mainhome/mainhome.module#MainhomePageModule' },
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },  { path: 'givereview', loadChildren: './givereview/givereview.module#GivereviewPageModule' }
+  { path: '', loadChildren: './splash/splash.module#SplashPageModule' },
+  { path: 'h', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: 'givereview', loadChildren: './givereview/givereview.module#GivereviewPageModule' },
+  
 
 
 
