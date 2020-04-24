@@ -1,0 +1,232 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md" icon="arrow-back" defaultHref="/tabs/home/{{resId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="favIconChange()">
+        <ion-icon [name]="favChange ? 'heart' : 'heart-empty'" slot="icon-only" class="white top-btn" no-margin></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="light">
+  <!-- <ion-slides pager="false" [options]="slideOpts" (ionSlideDidChange)="change()" #Slides>
+    <ion-slide>
+      <app-product (notify)="onReviewClick($event)" [product]="menuDetails" [slider]="slider" class="slide"></app-product>
+    </ion-slide>
+  </ion-slides> -->
+  <div>
+  <ion-row padding-0>
+    <ion-col padding-0 class="padding-0">
+      <ion-slides pager="false" [options]="slideOpts" style="height: 250px;" spaceBetween="-18">
+       <!--  <ion-slide *ngFor="let i of product.image;">
+          <img class="image img1" [src]="i">
+          <div class="product-image-overlay"></div>
+        </ion-slide> -->
+         <ion-slide>
+          <img class="image img1" [src]="menuDetails.menu_photo">
+          <div class="product-image-overlay"></div>
+        </ion-slide>
+      </ion-slides>
+      <ion-badge class="badge">
+        <!-- <ion-icon name="images"></ion-icon>{{product.image.length}} -->
+      </ion-badge>
+      <!-- <ion-row justify-content-end class="hover-buttons">
+        <ion-icon size="small" float-right name="logo-instagram" class="fab" (click)="shareViaInstagram(product.image[0])"></ion-icon>
+        <ion-icon size="small" float-right name="share" class="fab" (click)="shareCommon(product.image[0])"></ion-icon>
+        <ion-icon *ngIf="!liked" size="small" float-right name="heart-empty" class="fab" (click)="like()"></ion-icon>
+        <ion-icon *ngIf="liked" size="small" float-right name="heart" class="fab red" (click)="like()"></ion-icon>
+      </ion-row> -->
+    </ion-col>
+  </ion-row>
+  <div padding>
+
+    <ion-row lines="none" class="row">
+      <ion-text class="name">{{menuDetails.menu_name}}</ion-text>
+    </ion-row>
+    <div>
+      <ion-row>
+        <ion-col>
+          <ion-text><span class="ion-float-left ion-no-margin"><strong>Sold By</strong></span></ion-text><br>
+          <ion-text><span class="ion-float-left ion-no-margin">{{menuDetails.restaurant_name}}</span></ion-text><br>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col style="text-align: left;">
+          <ion-icon name="star" color="mytheme" *ngFor="let i of fun.array(product.rating)"></ion-icon>
+          <ion-icon name="star-outline" color="mytheme" *ngFor="let i of fun.array(5-product.rating)"></ion-icon>
+        </ion-col>
+        <ion-col style="text-align: left;">
+          <h6 no-margin padding-start class="rate" (click)="goToReviews()">({{product.store_rating}} store ratings)</h6>
+        </ion-col>
+      </ion-row> -->
+    </div>
+    <div class="sep"></div>
+    <ion-row class="bgh">
+      <ion-col>
+        <ion-icon name="remove" (click)="decrement()" class="remove"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-input class="quant" type="number" value="{{currentNumber}}"></ion-input>
+      </ion-col>
+
+      <ion-col>
+        <ion-icon name="add" (click)="increment()" class="add"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-list color="light" class="round" *ngIf="menuDetails.sizeoption=='size'">
+      <ion-list-header style="font-size:medium;">Choose Item Size</ion-list-header>
+      <!-- <ion-item olor="light">
+        <ion-label>Choose Size</ion-label>
+        <ion-select placeholder="Choose Size">
+          <ion-select-option value="1">Big</ion-select-option>
+          <ion-select-option value="2">Small</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+      <ion-item olor="light">
+        <ion-label>Choose Size</ion-label>
+        <ion-select placeholder="Choose Size" [(ngModel)]="selectMenuSize" (ionChange)="menuSizeChange($event)" mode="md">
+          <ion-select-option value="{{size.menu_slice_id}}" *ngFor="let size of menuDetails.sizes;">{{size.menu_slice_name}} ({{currencySign}}{{size.menu_slice_price}})</ion-select-option>
+          <!-- <ion-select-option value="2">Small</ion-select-option> -->
+        </ion-select>
+      </ion-item>
+      <ion-item class="">
+        <ion-label position="floating">Special instruction</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-list color="light" class="round" *ngIf="menuDetails.sizeoption!='size'">
+      <!-- <ion-list-header style="font-size:medium;">Choose Item</ion-list-header> -->
+      <!-- <ion-item olor="light">
+        <ion-label>Choose Size</ion-label>
+        <ion-select placeholder="Choose Size">
+          <ion-select-option value="1">Big</ion-select-option>
+          <ion-select-option value="2">Small</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+      <!-- <ion-item olor="light">
+        <ion-label>Choose Size</ion-label>
+        <ion-select placeholder="Choose Size" [(ngModel)]="selectMenuSize" (ionChange)="menuSizeChange($event)">
+          <ion-select-option value="{{size.menu_slice_id}}" *ngFor="let size of menuDetails.sizes;">{{size.menu_slice_name}} ({{currencySign}}{{size.menu_slice_price}})</ion-select-option>
+          <ion-select-option value="2">Small</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+      <ion-item class="">
+        <ion-label position="floating">Special instruction</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>
+  <!--  <ion-card (click)="expandItem(item)" *ngFor="let item of items" class="DES">
+    <ion-card-header>
+      <ion-card-title color="light"> Description <ion-icon style="float: right;font-size: xx-large;" name="arrow-dropdown"></ion-icon></ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="cd-cont">
+      <app-expandable expandHeight="100px" [expanded]="item.expanded">
+        <p>
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum hic dolorem quibusdam obcaecati aliquam ipsa nulla amet non praesentium a, in deserunt cumque ipsam ea asperiores deleniti minima incidunt aliquid!
+        </p>
+      </app-expandable>
+    </ion-card-content>
+  </ion-card> -->
+  <!-- <ion-card (click)="expandItem(item)" *ngFor="let item of items" class="DES">
+    <ion-card-header>
+      <ion-card-title color="light"> {{item.title}} <ion-icon style="float: right;font-size: xx-large;"
+          name="arrow-dropdown"></ion-icon>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="cd-cont">
+      <app-expandable expandHeight="100px" [expanded]="item.expanded">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum hic dolorem quibusdam obcaecati aliquam
+          ipsa nulla amet non praesentium a, in deserunt cumque ipsam ea asperiores deleniti minima incidunt aliquid!
+        </p>
+      </app-expandable>
+    </ion-card-content>
+  </ion-card> -->
+  <!-- close by jayanta
+   <ion-card *ngFor="let item of items" class="ion-margin-bottom">
+    <ion-card-header class="DES">
+      <ion-card-title color="light">
+        {{item.title}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="overflow-y: scroll; height: 150px;">
+      <p class="test-t">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum hic dolorem quibusdam obcaecati aliquam
+        ipsa nulla amet non praesentium a, in deserunt cumque ipsam ea asperiores deleniti minima incidunt aliquid!
+      </p>
+    </ion-card-content>
+  </ion-card> -->
+  <ion-card class="ion-margin-bottom" *ngIf="menuDetails.menu_description!=''">
+    <ion-card-header class="DES">
+      <ion-card-title color="light">
+        Description
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="overflow-y: scroll; height: 150px;">
+      <p class="test-t">
+        {{menuDetails.menu_description}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-margin-bottom" *ngIf="menuDetails.menu_ingredients!=''">
+    <ion-card-header class="DES">
+      <ion-card-title color="light">
+        Features
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="overflow-y: scroll; height: 150px;">
+      <p class="test-t">
+        {{menuDetails.menu_ingredients}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-margin-bottom" *ngIf="menuDetails.menu_packaging!=''">
+    <ion-card-header class="DES">
+      <ion-card-title color="light">
+        Packaging
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="overflow-y: scroll; height: 150px;">
+      <p class="test-t">
+        {{menuDetails.menu_packaging}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer class="footer" align-items-center>
+  <ion-toolbar color="facebook">
+      <ion-row align-items-center>
+        <ion-col class="ion-padding">
+          <ion-text *ngIf="menuDetails.sizeoption == 'fixed' && menuDetails.menu_price_offer != 0.00">
+            <h6 no-margin class="cut">{{currencySign}}{{menuDetails.menu_price}}</h6>
+          </ion-text>
+          <ion-text *ngIf="menuDetails.sizeoption != 'fixed' && menuDetails.show_item_offer != 0.00">
+            <h6 no-margin class="cut">{{currencySign}}{{menuDetails.show_item_price}}</h6>
+          </ion-text>
+          <ion-text *ngIf="menuDetails.sizeoption == 'fixed' && menuDetails.menu_price_offer != 0.00">
+            <h3 no-margin class="foot-highlight">{{currencySign}}{{fun.calculate(menuDetails.menu_price,
+              menuDetails.menu_price_offer)}}</h3>
+          </ion-text>
+          <ion-text *ngIf="menuDetails.sizeoption != 'fixed' && menuDetails.show_item_offer != 0.00">
+            <h3 no-margin class="foot-highlight">{{currencySign}}{{fun.calculate(menuDetails.show_item_price,
+              menuDetails.show_item_offer)}}</h3>
+          </ion-text>
+          <ion-text *ngIf="menuDetails.sizeoption == 'fixed' && menuDetails.menu_price_offer == 0.00">
+            <h3 no-margin class="foot-highlight">{{currencySign}}{{menuDetails.menu_price}}</h3>
+          </ion-text>
+          <ion-text *ngIf="menuDetails.sizeoption != 'fixed' && menuDetails.show_item_offer == 0.00">
+            <h3 no-margin class="foot-highlight">{{currencySign}}{{menuDetails.show_item_price}}</h3>
+          </ion-text>
+        </ion-col>
+        <ion-col size="5">
+          <!-- <ion-button (click)="goToCart()" float-right class="white foot-btn ion-no-margin" shape="round" expand="block"><strong>Add To Cart</strong></ion-button> -->
+          <ion-button  color="mytheme" (click)="addToCart()" float-right class="white foot-btn ion-no-margin" shape="round" expand="block"><strong>Add To Cart</strong></ion-button>
+        </ion-col>
+      </ion-row>
+</ion-toolbar>
+</ion-footer>

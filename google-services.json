@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "7982499056",
+    "firebase_url": "https://orderito-d4e81.firebaseio.com",
+    "project_id": "orderito-d4e81",
+    "storage_bucket": "orderito-d4e81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7982499056:android:f7954cd12d1cd449cc2e35",
+        "android_client_info": {
+          "package_name": "com.orderito.customerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "7982499056-v1ft1l6mi65bk2u1a303e4t502rbbkec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOBWFHGWi5SnR4Dw8_rD9INi7zKOLRPsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "7982499056-v1ft1l6mi65bk2u1a303e4t502rbbkec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

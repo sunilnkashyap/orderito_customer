@@ -1,0 +1,43 @@
+<ion-row style="width: 100%;">
+  <ion-col *ngFor="let data of recieved_data;" size="6">
+    <ion-card class="card" no-margin (click)="open(data.id)">
+      <ion-badge class="badge" *ngIf="data.sizeoption == 'fixed' && data.menu_price_offer != 0.00">{{data.menu_price_offer}}%</ion-badge>
+      <ion-badge class="badge" *ngIf="data.sizeoption == 'size' && data.show_item_offer != 0.00">{{data.show_item_offer}}%</ion-badge>
+      <img class="prd-img" [src]="data.menu_photo" [alt]="data.menu_name">
+      <ion-card-content style="position: relative;">
+        <ion-card-title>
+          <ion-row>
+            <ion-col *ngIf="data.sizeoption == 'fixed' && data.menu_price_offer !=  0.00" class="ion-no-padding">
+              <ion-text class="ion-text-left"><span class="price"><span
+                    class="inline">{{currencySign}}{{data.menu_price}}</span>
+                  <strong>{{currencySign}}{{fun.calculate(data.menu_price, data.menu_price_offer)}}</strong></span></ion-text>
+            </ion-col>
+            <ion-col *ngIf="data.sizeoption != 'fixed' && data.show_item_offer !=  0.00" class="ion-no-padding">
+              <ion-text class="ion-text-left"><span class="price"><span
+                    class="inline">{{currencySign}}{{data.show_item_price}}</span>
+                  <strong>{{currencySign}}{{fun.calculate(data.show_item_price, data.show_item_offer)}}</strong></span></ion-text>
+            </ion-col>
+            <ion-col *ngIf="data.sizeoption == 'fixed' && data.menu_price_offer == 0.00" class="ion-no-padding">
+              <ion-text text-left><span class="price"><strong>{{currencySign}}{{data.menu_price}}</strong></span>
+              </ion-text>
+            </ion-col>
+            <ion-col *ngIf="data.sizeoption != 'fixed' && data.show_item_offer == 0.00" class="ion-no-padding">
+              <ion-text text-left><span class="price"><strong>{{currencySign}}{{data.show_item_price}}</strong></span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row>
+            <ion-col text-left class="ion-no-padding">
+              <h6 text-left class="subtitle">{{data.bought}}+ bought this</h6>
+            </ion-col>
+          </ion-row> -->
+        </ion-card-title>
+        <p class="buy">Add to Cart<ion-icon name="add-circle-outline"></ion-icon></p>
+        <!-- <ion-button expand="block" fill="outline" color="mytheme" class="shadow-red" shape="round">
+          <ion-icon name="add-circle-outline"></ion-icon> 
+          Add to Cart
+        </ion-button> -->
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-row>

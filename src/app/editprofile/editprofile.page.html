@@ -1,0 +1,136 @@
+<ion-header class="ion-no-padding" color="mytheme" class="mybg ">
+  <!-- <ion-row justify-content-center>
+    <ion-img src="assets/images/login.png" class="head-image"></ion-img>
+  </ion-row> -->
+  <ion-toolbar class="ion-no-padding" color="mytheme">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md" icon="arrow-back" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Update Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-text>
+    <h3 no-margin margin-bottom text-center class="title">Update Profile</h3>
+  </ion-text> -->
+  <ion-grid class="rd-card">
+    <form [formGroup]="signupForm" (ngSubmit)="doSignup()">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="First Name" formControlName="f_name" name="f_name"  [value]="profile.customer_name" class="input" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="Last Name" formControlName="l_name" name="l_name" [value]="profile.customer_lastname" class="input" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="number" placeholder="Phone Number" formControlName="phone_no" name="phone_no" [value]="profile.customer_phone" class="input"
+            padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="Address" formControlName="address" name="address" [value]="profile.customer_crossstreet" class="input"
+            padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="postcode" formControlName="postcode" name="postcode" [value]="profile.customer_zip" class="input"
+            padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="City" formControlName="city" name="city" class="input" [value]="profile.customer_city" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="State" formControlName="state" name="state" [value]="profile.customer_state" class="input" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="email" placeholder="Email" formControlName="email" name="email" [value]="profile.customer_email" class="input" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="password" placeholder="Password" formControlName="password" name="password" class="input"
+            padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="password" placeholder="Confirm Password" formControlName="confirm_pass" name="confirm_pass" class="input"
+            padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <!-- <ion-button expand="block" [routerLink]="['/tabs/profile']" routerDirection="forward" shape="round"
+          class="ion-margin" style="height: 50px;" color="mytheme"><strong class="white">Update
+            Profile</strong>
+        </ion-button> -->
+        <ion-button expand="block"  shape="round" class="ion-margin" style="height: 50px;" type="submit" color="mytheme" [disabled]="!signupForm.valid"><strong class="white">Update Profile</strong>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+    <div class="line"></div>
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button expand="block" fill="outline" color="fb"><ion-img src="assets/images/facebook_logo.png" slot="start" class="logo" margin-end></ion-img>Facebook</ion-button>
+      </ion-col>
+       <ion-col>
+        <ion-button expand="block" color="light"><ion-img src="assets/images/google_logo.png" slot="start" class="logo" margin-end></ion-img>Google</ion-button>
+      </ion-col>
+    </ion-row> -->
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button expand="block" fill="outline" color="mytheme" (click)="fun.navigate('login')"><strong>Have an account? Sign in</strong></ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col>
+        <ion-text text-center color="medium">
+          <h6 no-margin class="small"><a (click)="open_modal(true)">Terms of Use</a> and <a
+              (click)="open_modal(false)">Privacy Policy</a></h6>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start">
+      <ion-menu-button class="white menu" color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      My Account
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <!-- <ion-icon name="log-out-outline" slot="icon-only" class="white"></ion-icon> -->
+        <ion-icon name="log-out" mode="ios" slot="icon-only"  class="white" margin></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-no padding">
+  <ion-list class="ion-no margin ion-no-padding bgmh">
+    <ion-row>
+      <ion-col size="4" (click)="selectImage()">
+        <!-- <img class="prf-img" src="{{userImage}}" alt="Pofile-img" srcset=""> -->
+        <!-- <img src="../../../assets/images/person-flat.png" class="prf-img" *ngIf="userImage==''"> -->
+        <img src="{{userImage}}" class="prf-img" alt="Pofile-img">
+      </ion-col>
+      <ion-col size="7" style="align-self: center;">
+        <ion-text class="prf-name">{{userName}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-list class="ion-no-padding">
+    <ion-list-header class="head-bak">
+      <p class="mm">Contact Information</p>
+      <!-- <ion-icon (click)="goEditPgae()" [routerLink]="['/tabs/editprofile']" routerDirection="forward" mode="md" class="ion-float-right edit"
+        name="create"></ion-icon> -->
+      <ion-icon (click)="goEditPgae()" routerDirection="forward" mode="md" class="ion-float-right edit"
+        name="create"></ion-icon>
+    </ion-list-header>
+    <div class="card">
+      <ion-item>
+        <ion-col size="2">
+          <ion-icon color="mytheme" name="mail" style="font-size: 20px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <p class="det">{{userEmail}}</p>
+        </ion-col>
+        
+        
+      </ion-item>
+      <ion-item>
+        <ion-col size="2">
+          <ion-icon color="mytheme" name="call" style="font-size: 20px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <p class="det">{{userPhone}}</p>
+        </ion-col>
+      </ion-item>
+      <ion-item>
+        <ion-col size="2">
+          <ion-icon color="mytheme" name="pin" style="font-size: 20px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <p class="det">{{userAddress}}</p>
+        </ion-col>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

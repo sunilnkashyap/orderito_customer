@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-toolbar color="mytheme">
+    <ion-title color="light">{{content.content_title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="close" color="light" slot="icon-only" (click)="dismiss()" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="textSection" [innerHtml]="content.content">
+      <!-- {{content.content}} -->
+      <!-- {{contentdata}} -->
+  </div>
+
+</ion-content>

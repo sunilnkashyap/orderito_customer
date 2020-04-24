@@ -1,0 +1,82 @@
+ion-content{
+  --ion-background-color: rgba(83, 91, 254, 0.8509803921568627);
+  
+}
+.round-shaped:focus{
+    outline:0px !important;
+}
+.round-shaped{
+    // text-align: center;
+    // background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
+    // padding: 20px;
+    // border-radius: 50%;
+    // box-shadow: 1px 1px 4px 3px var(--ion-color-primary-contrast);
+    // height: 140px;
+    // width:140px;
+    // margin: 0px auto;
+    // text-align: center;
+    // padding: 20px;
+    // border-radius: 50%;
+    // width: 140px;
+    // margin: 0 auto;
+    // margin-bottom: 15px;
+    // background: var(--ion-color-primary-tint);
+    // border: 2px solid white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 30%;
+    height: 140px;
+    width: 140px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    background: var(--ion-color-light);
+    border: 2px solid var(--ion-color-btn);
+    // box-shadow: 2px 3px 7px 2px rgb(234, 162, 13);
+    box-shadow: 2px 3px 7px 2px rgb(83, 91, 254);
+    img{
+        height: 70px;
+        width: 100%;
+        object-fit: contain;
+    }
+    h3{
+        font-weight: 700;
+        color: var(--ion-color-btn);
+        font-size: 18px;
+        // text-shadow: 1px 2px 1px var(--ion-color-bg);
+    }
+}
+.head{
+    background-color: var(--ion-color-light-tint);
+    border-radius: 10px;
+    width: 100%;
+    margin: 0px auto;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ion-color-bg);
+    padding: 10px;
+    // box-shadow: 1px 1px 4px 3px #edebeb;
+}
+.Address{
+	width: 100%;
+    font-size: 13px;
+    color: var(--ion-color-danger-contrast);
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    p{
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+}
+.location{
+	font-size: 25px;
+	color: var(--ion-color-danger-contrast);
+	margin-top: 8px;
+}
+.option{
+	font-size: 25px;
+	color: var(--ion-color-bg);
+	// margin-top: 10px;
+	align-self:center;
+}

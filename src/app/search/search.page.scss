@@ -1,0 +1,107 @@
+.search-bar {
+    // background-color: var(--ion-color-danger-contrast);
+    border-radius: 3px;
+    font-size: .9em !important;
+    margin: 5px;
+    color: var(--ion-color-bg);
+    width: 97%;
+}
+.btn {
+    margin: 3px;
+    padding: 5px;
+    border: 0.5px solid var(--ion-color-bg);
+    border-radius: 15px;
+    background: var(--ion-color-light);
+    box-shadow: 1px 2px 8px 1px #edebeb;
+}
+.filter-btn {
+    padding-left: 3px;
+    font-size: 11px;
+    padding-right: 3px;
+    vertical-align: middle;
+    text-transform: capitalize;
+}
+.view {
+    color: var(--ion-color-bg);
+    font-size: 12px;
+}
+.sep {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(210, 210, 210);
+}
+.container-outer { 
+    overflow: scroll; 
+    display: flex;
+    flex-wrap: nowrap;
+}
+.container-inner { 
+    min-width: 120px; 
+    max-width: 120px;
+    display: inline;
+    padding: 3px 9px;
+    align-content: center !important;
+}
+.spon-img {
+    min-height: 100px;
+    max-height: 100px;
+    margin: 3px;
+}
+
+
+/* ****************ribbon***************************/
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: 5px solid #2980b9;
+}
+.ribbon span {
+    position: absolute;
+    display: block;
+    width: 41px;
+    padding: 0px 0;
+    background-color: var(--ion-color-danger);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font: 700 10px/1 "Lato", sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+    text-align: center;
+    vertical-align: middle;
+}
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.ribbon-top-left::before {
+  top: 0;
+  right: 0;
+}
+.ribbon-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+.ribbon-top-left span {
+  right: 106px;
+  top: 20px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+// ion-content{
+//     --ion-background-color:linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+//   }

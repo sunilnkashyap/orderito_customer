@@ -1,0 +1,53 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start">
+      <ion-menu-button class="white menu" color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Your Orders
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-item margin-bottom class="ion-no-padding" lines="none" *ngFor="let value of responseData;" class="card"
+    >
+    <ion-row align-item-center style="width: 100%;">
+      <ion-col size="5">
+        <ion-row>
+          <strong class="title" no-margin><strong>{{value.restaurant_name}}</strong></strong>
+        </ion-row>
+        <ion-row>
+          <!-- <p style="font-size: 13px; text-align: justify;">{{order.delivery_date}} Fri Jan 31 2020 12:24:39</p> -->
+          <p style="font-size: 13px; text-align: justify;">{{value.orderdate}}</p>
+        </ion-row>
+        <ion-row *ngIf="value.status == 'Delivered'">
+          <ion-button color="mytheme" (click)="giveReview(value.orderid,value.restaurant_id)">Review</ion-button>
+        </ion-row>
+        <!-- <img [src]="order.product.image[0]"> -->
+      </ion-col>
+      <ion-col size="5">
+        <ion-row style="text-align: right;display: block;">
+          <ion-text>
+            <h5 class="title" no-margin><strong>#{{value.ordergenerateid}}</strong></h5>
+          </ion-text>
+        </ion-row>
+        <ion-row style="text-align: right;display: block;">
+          <ion-text>
+            <p class="sub">Order Amount:
+              {{currencySign}}{{value.ordertotalprice}}</p>
+          </ion-text>
+        </ion-row>
+        <ion-row style="text-align: right;display: block;">
+          <ion-text>
+            <p margin-bottom no-margin class="sub">Order Status:
+              <span style="color: red;">{{value.status}}</span></p>
+          </ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-col size="2" class="ion-align-self-center" text-center>
+        <ion-icon class="item-icon mycolor" name="arrow-dropright" mode="ios" (click)="openorderdetails(value.orderid)"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-content>

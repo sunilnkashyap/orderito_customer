@@ -1,0 +1,125 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button icon="arrow-back" defaultHref="/tabs/mainhome" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Stores</ion-title>
+    <!-- <ion-grid>
+        <ion-row>
+          <ion-col size="10">
+            <div class="Address">
+              <p>Slat Lake City, Sector V,
+              Kolkata:700001,</p> 
+            </div>
+          </ion-col>
+          <ion-col size="2" class="l1">
+            <div class="" (click)="showlocation()">
+              <ion-icon class="location" ios="ios-locate" md="md-locate"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content color="light" class="ion-no-padding">
+  <ion-grid>
+    <ion-row style="margin-top: 10px;">
+      <ion-col size="10">
+          <ion-searchbar [routerLink]="['/tabs/search/',cat_name]" animated placeholder="Search Stores" class="ion-padding-start search-bar" mode="md"></ion-searchbar>
+      </ion-col>
+      <ion-col size="2" style="align-self: center;text-align: center;">
+        <ion-icon (click)="side_open()" class="option" ios="ios-options" md="md-options" mode="md"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row style="margin-top: 10px;">
+      <ion-col size="12" *ngFor="let value of storeList">
+        <!-- <div class="storebox" [routerLink]="['/tabs/home',value.id]" (click)="presentLoading(value.id, value.isopen)"> -->
+        <div class="storebox" (click)="presentLoading(value.id, value.isopen)">
+          <img [src]="value.restaurant_logo" alt="" srcset="" />
+          <div class="ribbon ribbon-top-left" *ngIf="value.isopen=='0'"><span>Closed</span></div>
+          <div class="ribbon ribbon-top-left" *ngIf="value.isopen!='0'"><span style="background-color: #29ce29;">Open</span></div>
+           <div class="icon_option">
+                <ion-icon *ngIf="value.restaurant_delivery == 'Yes'" class="byc" mode="md" md="md-bicycle"></ion-icon>
+                <ion-icon *ngIf="value.restaurant_pickup == 'Yes'" class="byc" mode="md" md="md-basket"></ion-icon>
+              </div>
+              <div class="card">
+                  <ion-row>
+                    <ion-col size="6" class="ion-no-padding">
+                      <h3 class="ion-text-left">{{value.restaurant_name}}</h3>
+                      <p class="ion-text-left">{{value.restaurant_streetaddress}}</p>
+                    </ion-col>
+                    <ion-col size="6" class="ion-no-padding">
+                      <p class="ion-text-right" >{{value.distance}} mi</p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="6" class="ion-no-padding">
+                     <!--  <p class="star-rate">
+                        <ion-icon color="warning" name="star"></ion-icon>
+                        <ion-icon color="warning" name="star"></ion-icon>
+                        <ion-icon color="warning" name="star"></ion-icon>
+                        <ion-icon color="warning" name="star"></ion-icon>
+                        <ion-icon color="warning" name="star"></ion-icon>
+                      </p> -->
+                      <ionic4-star-rating style="text-align: left;" #rating
+                          activeIcon = "ios-star"
+                          defaultIcon = "ios-star-outline"
+                          activeColor = "#ffce00" 
+                          defaultColor = "#ffce00"
+                          readonly="true"
+                          rating="{{value.rating}}"
+                          fontSize = "16px"
+                          >
+                      </ionic4-star-rating>
+                    </ion-col>
+                    <ion-col size="6" class="ion-no-padding">
+                    <p class="ion-text-right" *ngIf="value.restaurant_delivery_opentime != '' && value.restaurant_delivery_closetime != ''" style="font-size: 13px;"> {{value.restaurant_delivery_opentime}} - {{value.restaurant_delivery_closetime}}</p>
+                    <p class="ion-text-right" *ngIf="value.restaurant_delivery_opentime1 != '' && value.restaurant_delivery_closetime1 != '' && value.restaurant_delivery_opentime != '' && value.restaurant_delivery_closetime != ''" style="font-size: 13px;"> {{value.restaurant_delivery_opentime1}} - {{value.restaurant_delivery_closetime1}}</p>
+                    <p class="ion-text-right" *ngIf="value.restaurant_delivery_opentime2 != '' && value.restaurant_delivery_closetime2 != '' && value.restaurant_delivery_opentime != '' && value.restaurant_delivery_closetime != ''" style="font-size: 13px;"> {{value.restaurant_delivery_opentime2}} - {{value.restaurant_delivery_closetime2}}</p>
+                    </ion-col>
+                  </ion-row>
+              </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- <ion-row>
+      
+
+
+      <ion-col size="12" *ngFor="let value of storeList">
+        <ion-card class="round">
+          <div class="img-box1" [routerLink]="['/tabs/home',value.id]" (click)="presentLoading()">
+            <div class="inner_img_box">
+              <img class="res_pic" style="border-radius: 2px;" [src]="value.restaurant_logo" alt="" />
+              <div class="overlay"></div>
+              <div class="icon_option">
+                <ion-icon *ngIf="value.restaurant_delivery == 'Yes'" tooltip="Delivery" positionV="bottom" arrow="true" event="click" hideOthers="true" class="byc"
+                  ios="ios-bicycle" md="md-bicycle"></ion-icon>
+                <ion-icon *ngIf="value.restaurant_pickup == 'Yes'" tooltip="Pickup" positionV="bottom" arrow="true" event="click" hideOthers="true" class="byc"
+                  ios="ios-basket" md="md-basket"></ion-icon>
+              </div>
+              <p class="de1">{{value.restaurant_name}}</p>
+            </div>
+
+          </div>
+        </ion-card>
+      </ion-col>
+      
+     
+
+    </ion-row> -->
+  </ion-grid>
+  <ion-grid *ngIf="!showstore">
+    <ion-row style="margin-top: 10px;">
+      <ion-col size="12" style="text-align: center;">
+        <ion-text color="danger">
+          <h4 >No store found</h4>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

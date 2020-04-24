@@ -1,0 +1,70 @@
+<ion-header class="ion-no-padding" color="mytheme" class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button mode="md" icon="arrow-back" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Sign In</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-text float-end color="medium" (click)="fun.navigate('/tabs/passwordreset', true)">
+          <h6 no-margin text-end class="small">Forgot Password?</h6>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <div class="card ion-margin-vertical">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input clearInput type="email" placeholder="Email" formControlName="login_email" name="email" class="input" padding-horizontal>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input [type]="showPassword ? 'text': 'password'" placeholder="Password" formControlName="login_password" name="password" class="input" padding-horizontal>
+            </ion-input>
+            <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" expand="block" color="mytheme" type="submit" [disabled]="!loginForm.valid" style="height: 50px;"><strong
+            class="white" >Sign
+            In</strong>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    </form>
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button shape="round" expand="block" fill="outline" color="mytheme" style="height: 50px;"
+          class="ion-no-padding" (click)="fbLogin()">
+          <ion-img src="assets/images/facebook_logo.png" slot="start" class="logo" margin-end></ion-img>Facebook
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-text color="primary" (click)="goToSignup()" color="mytheme">
+          <strong>New? Create an Account</strong></ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text class="ion-text-center" color="medium">
+          <h6 no-margin class="small"><a (click)="open_modal(true)">Terms of Use</a> and <a
+              (click)="open_modal(false)">Privacy Policy</a></h6>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

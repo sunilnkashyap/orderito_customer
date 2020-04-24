@@ -1,0 +1,135 @@
+<ion-header class="ion-no-padding" color="mytheme" class="mybg ">
+  <!-- <ion-row justify-content-center>
+    <ion-img src="assets/images/login.png" class="head-image"></ion-img>
+  </ion-row> -->
+  <ion-toolbar class="ion-no-padding" color="mytheme">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md" icon="arrow-back" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-text>
+    <h3 no-margin margin-bottom text-center class="title">Sign Up</h3>
+  </ion-text> -->
+  <ion-grid class="rd-card">
+    <form [formGroup]="signupForm" (ngSubmit)="doSignup()">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="First Name" formControlName="f_name" name="f_name" class="input" [value]="profile.customer_name" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="Last Name" formControlName="l_name" name="l_name" class="input" [value]="profile.customer_lastname" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="number" placeholder="Phone Number" formControlName="phone_no" name="phone_no" class="input" [value]="profile.customer_phone"
+            padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="Address" formControlName="address" name="address" class="input" [value]="profile.customer_crossstreet"
+            padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="postcode" formControlName="postcode" name="postcode" class="input" [value]="profile.customer_zip"
+            padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="City" formControlName="city" name="city" class="input" [value]="profile.customer_city" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="text" placeholder="State" formControlName="state" name="state" [value]="profile.customer_state"  class="input" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="email" placeholder="Email" formControlName="email" name="email" class="input" [value]="profile.customer_email" padding-horizontal>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="password" placeholder="Password" formControlName="password" name="password" class="input" [value]="profile.customer_password" padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input clearInput type="password" placeholder="Confirm Password" formControlName="confirm_pass" name="confirm_pass" class="input" [value]="profile.customer_conpassword" padding-horizontal></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" shape="round" class="ion-margin" style="height: 50px;"
+           color="mytheme" type="submit" [disabled]="!signupForm.valid"><strong class="white">Sign
+            Up</strong>
+        </ion-button>
+        <!-- (click)="fun.navigate('/tabs/profile')" -->
+      </ion-col>
+    </ion-row>
+  </form>
+    <!-- <div class="line"></div>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" shape="round" fill="outline" color="fb" style="height: 50px;">
+          <ion-img src="assets/images/facebook_logo.png" slot="start" class="logo" margin-end></ion-img>Facebook
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" color="light"><ion-img src="assets/images/google_logo.png" slot="start" class="logo" margin-end></ion-img>Google</ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" fill="" shape="round" color="mytheme" (click)="fun.navigate('/tabs/login/login')">
+          <strong>Have an
+            account? Sign in</strong></ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text text-center color="medium">
+          <h6 no-margin class="small"><a (click)="open_modal(true)">Terms of Use</a> and <a
+              (click)="open_modal(false)">Privacy Policy</a></h6>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

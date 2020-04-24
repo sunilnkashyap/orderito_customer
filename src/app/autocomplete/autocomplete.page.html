@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Enter address</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+     <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true"   (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-item *ngFor="let item of autocompleteItems" tappable   (click)="chooseItem(item)">
+      {{ item }}
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<!-- <ion-header>
+    <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" icon="arrow-back"></ion-back-button>
+   </ion-buttons>
+      <ion-title>Address Search</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form>
+        <ion-grid>
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <ion-item>
+                        <ion-label position="floating">Start typing a location</ion-label>
+                        <ion-input type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+    <ion-card>
+        <ion-card-content class="ion-text-center">
+            <h4>Sorry! no restaurant found.</h4>
+        </ion-card-content>
+    </ion-card>
+</ion-content> -->

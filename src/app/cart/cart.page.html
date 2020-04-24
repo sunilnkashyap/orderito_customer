@@ -1,0 +1,384 @@
+<ion-header>
+  <ion-toolbar color="mytheme">
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons> -->
+    <!-- <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" defaultHref="/tabs/storeview"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title color="light">Review Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" padding-top color="light">
+  <div class="mid" *ngIf="cartcount == 0">
+    <ion-row size="12" justify-content-center disabled="true">
+      <button class="circle">
+        <ion-icon name="cart" size="large"></ion-icon>
+      </button>
+    </ion-row>
+    <ion-row size="12" justify-content-center disabled="true">
+      <ion-text><strong>Your cart is empty</strong></ion-text>
+    </ion-row>
+    <ion-row size="12" justify-content-center disabled="true">
+      <ion-button fill="clear" color="mytheme" (click)="browse()">Browse Products</ion-button>
+    </ion-row>
+  </div>
+  <div *ngIf="cartcount > 0">
+    <ion-row class="estd">
+      <ion-col size="8">
+        <ion-icon name="time" class="tt"></ion-icon>
+        <p style="margin-left: 10px;"> Estimated Time:</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="ion-float-right">{{restData.restaurant_estimated_time}} mins</p>
+      </ion-col>
+    </ion-row>
+    <ion-row margin-bottom margin-top>
+      <ion-text><strong class="text">Items in Cart</strong></ion-text>
+    </ion-row>
+    <ion-list #slidingList class="round-card">
+      <!-- <ion-item-sliding no-padding *ngFor="let item of data; let j = index;" class="card" no-margin>
+        <ion-item lines="none">
+          <ion-row>
+            <ion-col size="3" text-center>
+              <img [src]="item.product.image[0]" alt="item.product.name">
+              <ion-text class="small rmv" (click)="remove(j)">Remove</ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <h3 no-margin class="item-name">{{item.product.name}}</h3>
+              <h5 no-margin class="item-def">{{item.product.size}}</h5>
+              <h5 no-margin class="item-def">shipping: {{item.product.currency}}{{item.product.shipping}}</h5>
+              <h5 no-margin class="item-def">Dec 31 - Jan 17</h5>
+            </ion-col>
+            <ion-col size="3" float-right>
+              <ion-row text-end justify-content-end>
+                <h3 no-margin class="item-name" *ngIf="item.product.offer" text-end>{{item.product.currency}}{{fun.calculate(item.product.cost_price,
+                  item.product.discount)}}</h3>
+                <h3 no-margin class="item-name" *ngIf="item.product.offer" text-end><span
+                    class="cut">{{item.product.currency}}{{item.product.cost_price}}</span></h3>
+                <h3 no-margin class="item-name" *ngIf="!item.product.offer" text-end>
+                  {{item.product.currency}}{{item.product.cost_price}}</h3>
+              </ion-row>
+              <ion-row justify-content-end>
+                <ion-select placeholder="-" interface="alert" [interfaceOptions]="customAlertOptions"
+                  [(ngModel)]='item.quantity' class="select">
+                  <ion-select-option *ngFor="let q of qty" [(value)]="q" text-center>{{q}}</ion-select-option>
+                </ion-select>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="remove(j)">
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding> -->
+      <ion-item-sliding no-padding *ngFor="let item of review; let j = index;" class="card" no-margin>
+        <ion-item lines="none">
+          <ion-row>
+            <ion-col size="3" text-center>
+              <img [src]="item.menu_photo" alt="{{item.name}}">
+              <ion-text class="small rmv" (click)="removeFromCart(item.id,item.key)">Remove</ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <h3 no-margin class="item-name">{{item.name}}</h3>
+              <h5 no-margin class="item-def">{{item.size_name}}</h5>
+              <!-- <h5 no-margin class="item-def">shipping: {{item.product.currency}}{{item.product.shipping}}</h5>
+              <h5 no-margin class="item-def">Dec 31 - Jan 17</h5> -->
+            </ion-col>
+            <ion-col size="3" float-right>
+              <ion-row text-end justify-content-end>
+                <h3 no-margin class="item-name" *ngIf="item.offer" text-end><!-- {{item.product.currency}}{{fun.calculate(item.product.cost_price,
+                  item.product.discount)}} --></h3>
+                <h3 no-margin class="item-name" *ngIf="item.offer" text-end><span
+                    class="cut"><!-- {{item.product.currency}}{{item.product.cost_price}} --></span></h3>
+                <h3 no-margin class="item-name" text-end>
+                  {{currencySign}}{{item.price}}</h3>
+              </ion-row>
+              <ion-row justify-content-end>
+                <ion-select placeholder="-" mode="md" interface="alert" [interfaceOptions]="customAlertOptions"
+                  [(ngModel)]='item.quantity' class="select" (ionChange)="editCart($event, item)">
+                  <ion-select-option *ngFor="let q of qty" [(value)]="q" text-center>{{q}}</ion-select-option>
+                </ion-select>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="remove(j)">
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-row size="12" justify-content-center disabled="true">
+      <ion-button shape="round" expand="block" color="mytheme" class="btn-bng" (click)="browse()">
+        <span style="color: white;"> Continue shopping</span>
+      </ion-button>
+    </ion-row>
+    <ion-row margin>
+      <ion-text><strong class="text">Order Summary</strong></ion-text>
+    </ion-row>
+    <ion-item lines="none" class="card" no-margin *ngIf="!ShowApply">
+      <ion-row class="full" >
+        <ion-col size="9">
+          <ion-input placeholder="Enter Promo Code" [(ngModel)]="code" [(value)]="code" class="input"></ion-input>
+        </ion-col>
+        <ion-col align-self-center size="3">
+          <ion-button  expand="block" color="mytheme" (click)="applyCoupon()" class="btn-bng"><span class="small" style="color: white;">Apply</span></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item lines="none" class="card" no-margin *ngIf="ShowApply">
+      <ion-row class="full">
+        <ion-col size="9">
+          <ion-text><strong class="text">{{CouponMsg}}</strong></ion-text>
+        </ion-col>
+        <ion-col align-self-center size="3">
+          <ion-button expand="block" class="btn-bng" color="mytheme" (click)="discardCoupon()"><span style="color: white;" class="small">Discard</span></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div lines="none" class="card" no-margin padding-bottom>
+      <ion-row class="full" padding-horizontal>
+        <ion-col size="8">
+          <ion-text>Item Total</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{reviewCartdata.subtotal}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="full" padding-horizontal>
+        <ion-col size="8">
+          <ion-text>Service Charge</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{serviceCharge}}</ion-text>
+        </ion-col>
+      </ion-row>
+      
+      
+      <ion-row class="full" padding-horizontal>
+        <ion-col size="8">
+          <ion-text>Subtotal</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{reviewCartdata.subtotalWithTax}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="full" padding-horizontal *ngIf="Tips">
+        <ion-col size="9">
+          <ion-text>Tips</ion-text>
+        </ion-col>
+        <ion-col size="3" text-end>
+          <ion-text>{{currencySign}}{{tipsAmount}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row class="full" padding-horizontal>
+        <ion-col size="8">
+          <ion-text>Shipping</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{checkoutDeliveryCharge}}</ion-text>
+        </ion-col>
+      </ion-row> -->
+      <ion-row class="full" padding-horizontal *ngIf="ShowApply">
+        <ion-col size="8">
+          <ion-text>Discount(-)</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{couponDiscount}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="full" padding-horizontal>
+        <ion-col size="8">
+          <ion-text>Total</ion-text>
+        </ion-col>
+        <ion-col size="4" text-end>
+          <ion-text>{{currencySign}}{{TotalAmount}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <div class="sep"></div>
+      <ion-row>
+        <ion-col>
+          <ion-text class="item-def" text-start>
+            <div class="pad">
+              <p>We appricate your gratuity. Please note that this is the primary way for driver to earn money</p>
+            </div>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <div class="sep"></div>
+      <ion-list>
+        <ion-item>
+          <ion-label>Driver Tips</ion-label>
+          <ion-toggle [(ngModel)]="Tips" mode="md" (ionChange)="hidetips($event)"></ion-toggle>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="radio_grp">
+        <ion-list>
+          <ion-radio-group class="flex-box">
+            <ion-item class="con">
+              <ion-label>Fixed</ion-label>
+              <!-- <ion-radio value="cord" (ionSelect)="tipsType('fixed')"></ion-radio> -->
+              <ion-radio value="fixed" mode="md" (click)="fixed_tips()" [checked]="tips_in_amm"></ion-radio>
+            </ion-item>
+
+            <ion-item class="con">
+              <ion-label>Percentage (%)</ion-label>
+              <!-- <ion-radio value="duesenberg" (ionSelect)="tipsType('per')"></ion-radio> -->
+              <ion-radio value="duesenberg" mode="md" value="percentage" (click)="percentage_tips()" [checked]="tips_in_per"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-item *ngIf="tips_in_amm" class="ion-hide">
+          <ion-input type="number" [(ngModel)]="tipVal" (ionChange)="EnterFixTips($event)" placeholder="Enter Tip Amount"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="tips_in_per" class="ion-hide ggf">
+          <ion-label>Choose Percentage (%)</ion-label>
+          <ion-select [(ngModel)]="tipValPer" mode="md" (ionChange)="EnterPerTips()">
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="10">10</ion-select-option>
+            <ion-select-option value="15">15</ion-select-option>
+            <ion-select-option value="20">20</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <ion-list class="ion-margin-vertical round-card">
+        <ion-list-header color="light">
+          <ion-label>How would you like to receive your order?</ion-label>
+        </ion-list-header>
+        <ion-segment color="mytheme" class="orp" style="padding: 0 10px;">
+          <ion-segment-button checked layout="icon-start" (ionSelect)="segmentButtonClicked('delivery')">
+            <ion-icon name="bicycle"></ion-icon>
+            <ion-label>Delivery</ion-label>
+          </ion-segment-button>
+          <ion-segment-button layout="icon-start" (ionSelect)="segmentButtonClicked('pickup')">
+            <ion-icon name="cart"></ion-icon>
+            <ion-label>Pickup</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+      </ion-list>
+      <form [formGroup]="checkoutForm">
+      <ion-list class="round-card ion-margin-vertical">
+        <ion-list-header color="light">
+          <ion-label>Order Information</ion-label>
+        </ion-list-header>
+        
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">First Name</ion-label>
+          <ion-input class="ion_input" formControlName="f_name" name="f_name"  [value]="profile.customer_name"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Last Name</ion-label>
+          <ion-input class="ion_input" formControlName="l_name" name="l_name" [value]="profile.customer_lastname"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Phone Number</ion-label>
+          <ion-input class="ion_input" formControlName="phone_no" name="phone_no" [value]="profile.customer_phone"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Email Id</ion-label>
+          <ion-input class="ion_input" formControlName="email" name="email" [value]="profile.customer_email"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list class="round-card ion-margin-vertical">
+        <ion-list-header color="light">
+          <ion-label>Your Home Address</ion-label>
+        </ion-list-header>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Address</ion-label>
+          <ion-input class="ion_input" formControlName="address" name="address" (ionChange)="homeaddress()" [value]="profile.customer_crossstreet"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Post Code</ion-label>
+          <ion-input class="ion_input" formControlName="postcode" name="postcode" (ionChange)="homeaddress()" [value]="profile.customer_zip"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">City</ion-label>
+          <ion-input class="ion_input" formControlName="city" name="city" (ionChange)="homeaddress()" [value]="profile.customer_city"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">State</ion-label>
+          <ion-input class="ion_input" formControlName="state" name="state" (ionChange)="homeaddress()" [value]="profile.customer_state"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Delivery Instruction</ion-label>
+          <ion-textarea></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <ion-list class="round-card ion-margin-vertical">
+        <ion-list-header color="light">
+          <ion-label>Billing Address</ion-label>
+        </ion-list-header>
+        <ion-item class="ion-margin-horizontal">
+          <ion-checkbox color="primary" mode="md" (ionChange)="sameHomeAddress($event)" [value]="sameasaddresschecked"></ion-checkbox>
+          <ion-label class="inp-t ion-padding-start">Same as home address</ion-label>
+
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating"  class="inp-t">Address</ion-label>
+          <ion-input class="ion_input" formControlName="b_address" name="b_address" (ionChange)="billaddress()" [value]="profile.b_address"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">Post Code</ion-label>
+          <ion-input class="ion_input" formControlName="b_postcode" name="b_postcode" (ionChange)="billaddress()" [value]="profile.b_postcode"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">City</ion-label>
+          <ion-input class="ion_input" formControlName="b_city" name="b_city" (ionChange)="billaddress()" [value]="profile.b_city"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-horizontal">
+          <ion-label position="floating" class="inp-t">State</ion-label>
+          <ion-input class="ion_input" formControlName="b_state" name="b_state" (ionChange)="billaddress()" [value]="profile.b_state"></ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+      <ion-list class="ion-no-margin round-card">
+        <ion-radio-group>
+          <ion-list-header color="light">
+            <ion-label>Select payment method</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-radio value="COD" mode="md" (ionSelect)="choosePayment('cod')"></ion-radio>
+            <ion-label class="psd5">Cash On Delivery</ion-label>
+          </ion-item>
+         <!--  <ion-item>
+            <ion-radio value="Card"></ion-radio>
+            <ion-label class="psd5">Pay By Card</ion-label>
+          </ion-item> -->
+        </ion-radio-group>
+      </ion-list>
+      <ion-row>
+        <ion-col>
+          <ion-text class="item-def" text-start>
+            <div class="pad">
+              By tapping 'Checkout' you agree to the <a (click)="open_modal(true)" class="mycolor">Terms of Use</a>
+              and <a class="mycolor" (click)="open_modal(false)">Privacy Policy</a>
+            </div>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <div class="sep"></div>
+      <ion-row>
+        <ion-col>
+          <ion-text class="item-def ion-text-start ion-padding-bottom">
+            <div class="mycolor pad">
+              30 Day Free Return and Refund
+            </div>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="facebook" class="xfooter">
+    <!-- <ion-title class="chk-bg">Checkout</ion-title> -->
+    <ion-button type="submit" color="mytheme" expand="block" class="chg" shape="round" fill="solid" [disabled]="!checkoutForm.valid" (click)="doCheckout()">Checkout</ion-button>
+  </ion-toolbar>
+</ion-footer>

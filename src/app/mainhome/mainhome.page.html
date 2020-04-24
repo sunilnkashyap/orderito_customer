@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="mytheme" class="ion-padding-horizontal">
+    <ion-buttons slot="start" color="light">
+      <ion-menu-button (click)="toggleMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <div class="Address">
+            <p>{{geoAddress}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="2" class="l1 ion-text-center">
+          <div class="" (click)="showlocation()">
+            <ion-icon class="location" ios="ios-locate" md="md-locate"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" #scrollArea scrollEvents="true" (ionScroll)="logScrolling($event,setStyle)">
+  <ion-row class="ion-margin" style="display: none;">
+    <ion-col class="ion-text-center">
+      <h1 class="ion-no-margin  head">Explore</h1>
+    </ion-col>
+  </ion-row>
+
+  <ion-grid class="ion-no-padding ion-margin-top">
+    <ion-row class="ion-margin-top">
+      <ion-col *ngFor="let value of categoryList.category" >
+        <!-- <CustomComponent #bouncebtn> -->
+        <div [routerLink]="['/tabs/storeview',value.maincatename]" routerDirection="forward" class="round-shaped" #bouncebtn>
+          <img class="cat-imges" src="{{value.maincatephoto}}" alt="Image Not Found" srcset="">
+          <ion-label style="overflow: hidden; height: 37px; display: inline-block;">
+            <h4>{{value.maincatename}}</h4>
+          </ion-label>
+        </div>
+      <!-- </CustomComponent> -->
+      </ion-col>
+      <!-- <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/mobile-store.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Supermarket</h3>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/cocktail.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Drinks</h3>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/snack.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Snacks</h3>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/chocolate.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Sweet</h3>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/food.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Vegetable</h3>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div routerLink="/tabs/storeview" routerDirection="forward" (click)="presentLoading()" class="round-shaped">
+          <img class="cat-imges" src="../../assets/images/milk.svg" alt="" srcset="">
+          <ion-label>
+            <h3>Milk & Food</h3>
+          </ion-label>
+        </div>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+ <!--  <ion-button (click)="ScrollToTop()">
+    Scroll To Top
+  </ion-button> -->
+  <!-- fab placed to the bottom start -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="ScrollToTop()" color="mytheme" *ngIf="activescroll">
+    <ion-fab-button color="mytheme">
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

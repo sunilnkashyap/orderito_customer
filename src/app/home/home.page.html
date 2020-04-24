@@ -1,0 +1,167 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" defaultHref="/tabs/storeview/{{cat_name}}" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Items</ion-title>
+  </ion-toolbar>
+  <!-- <ion-input type="text" (click)="fun.navigate('search')" padding-start placeholder="Srearch Store" class="search-bar"></ion-input> -->
+  <!-- <ion-buttons slot="end">
+
+     <ion-button (click)="fun.navigate('cart')">
+        <ion-icon name="cart" slot="icon-only" no-margin class="white top-btn"></ion-icon>
+      </ion-button>
+      <ion-button (click)="side_open()">
+        <ion-icon name="options" slot="icon-only" *ngIf="segment!=data[1].title" no-margin class="white top-btn"></ion-icon>
+      </ion-button> 
+    </ion-buttons> -->
+
+
+  <!-- <ion-toolbar color="mytheme" class="segmenttoolbarSection">
+      <ion-segment mode="md"  (ionChange)="seg($event)" scrollable="true" id="dag" class="segSection">
+        <ion-segment-button   [attr.id]="'seg_' + i" *ngFor="let item of data; let i = index;" no-margin no-padding (ionSelect)="update(i)"
+          class="my-btn ion-activatable" [value]="item.title" [ngClass]="{'btn-active':segment == item.title}">
+          <ion-text class="ion-padding-horizontal ">{{item.title}}</ion-text>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="ion-no-padding" color="light">
+  <div class="ion-no-padding head-name" *ngIf="restaurant_display_banner == 'Yes'" [ngStyle]= "{'background-image': 'url('+ res_marketbanner_img_code +')'}">
+    <div class="overlay"></div>
+    <h2 class="ion-text-center" style="z-index: 999999;">
+      {{restaurantName}}
+    </h2>
+    <p>
+      {{restaurantAddress}}
+    </p>
+  </div>
+  <div class="ion-no-padding head-name" [ngStyle]="{'background-color': banner_color}" *ngIf="restaurant_display_banner != 'Yes'">
+    
+    <div class="overlay"></div>
+    <h2 class="ion-text-center" style="z-index: 999999;">
+      {{restaurantName}}
+    </h2>
+    <p>
+      {{restaurantAddress}}
+    </p>
+  </div>
+  <div class="ion-padding info">
+    <ion-row>
+      <ion-col class="ion-text-left">
+        <ion-icon name="information-circle"></ion-icon>
+        <p class="inline">{{currencySign}}{{restaurantMinOrder}}</p>
+        <p>min.Order</p>
+      </ion-col>
+      <ion-col class="ion-text-left">
+        <ion-icon name="pin"></ion-icon>
+        <p class="inline">{{restaurantDistance}} mi</p>
+        <p>Distance</p>
+      </ion-col>
+      <ion-col class="ion-text-left">
+        <ion-icon name="time"></ion-icon>
+        <p class="inline">{{restaurantEstTime}} mins</p>
+        <p>Est. Delivery Time</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list class="ion-no-padding segmented-tab">
+    <ion-segment color="mytheme" mode="md" (ionChange)="seg($event)" scrollable="true" id="dag" class="segSection">
+      <ion-segment-button [attr.id]="'seg_' + i" *ngFor="let item of categoryList; let i = index;" no-margin no-padding
+        (ionSelect)="update(i)" class="my-btn ion-activatable" [value]="item.maincatename"
+        [ngClass]="{'btn-active':segment == item.maincatename}">
+        <ion-text class="ion-padding-horizontal ">{{item.maincatename}}</ion-text>
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-list>
+
+  <ion-list class="ion-padding segmented-tab" *ngIf="showCategoryList">
+    <ion-slides pager="false" [options]="slideOpts" (ionSlideDidChange)="change()" (click)="preventDefault($event)"
+      #Slides>
+      <ion-slide *ngFor="let item of categoryList;">
+        <app-productlist style="width: 100%;" [recieved_data]="item.menu"></app-productlist>
+      </ion-slide>
+      <!-- <ion-slide>
+        <app-productlist [recieved_data]="product_data_2"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_3"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_4"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_5"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="sponsored"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_2"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="sponsored"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_4"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_5"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="sponsored"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_2"></app-productlist>
+      </ion-slide>
+      <ion-slide>
+        <app-productlist [recieved_data]="product_data_3"></app-productlist>
+      </ion-slide> -->
+      <!-- <ion-slide>
+        <app-productlist [recieved_data]="product_data_4"></app-productlist>
+      </ion-slide> -->
+    </ion-slides>
+  </ion-list>
+
+
+  <ion-list *ngIf="!showCategoryList">
+    <!-- <p>No item available</p> -->
+    <ion-row style="margin-top: 10px;">
+      <ion-col size="12" style="text-align: center;">
+        <ion-text color="danger">
+          <h4 >No item available</h4>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="facebook">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" style="align-self: center;">
+          <ion-text class="left">
+            {{cart_count}} item | {{currencySign}}{{TotalAmount}}
+            <p class="st-n"></p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <div class="right ion-float-right" [routerLink]="['/tabs/cart']" routerDirection="forward">
+            <ion-label>view cart</ion-label>
+            <ion-icon name="cart" slot="end" class="ig"></ion-icon>
+          </div> -->
+          <div class="right ion-float-right" (click)="goToCartPage()" >
+            <ion-label>Checkout</ion-label>
+            <ion-icon name="cart" slot="end" class="ig"></ion-icon>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

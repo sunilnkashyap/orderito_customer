@@ -1,0 +1,81 @@
+<ion-header class="mybg">
+  <ion-toolbar color="mytheme">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" defaultHref="/tabs/storeview/{{cat_name}}" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-row class="ion-align-items-center">
+    <ion-col class="ion-align-items-center">
+      <h5 class="ion-no-margin ion-padding-horizontal">Start typing a store name</h5>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center">
+    <ion-col class="ion-align-items-center">
+      <ion-searchbar animated debounce="500" placeholder="Search Stores" (ionInput)="getItems($event)" mode="md" cancelButtonText=""
+        class="ion-padding-start search-bar"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+
+  <!-- <ion-list>
+    <ion-list-header class="ion-text-center ion-justify-content-center">
+      <label>
+        Sorry! no store found.
+      </label>
+    </ion-list-header>
+  </ion-list> -->
+  <ion-list *ngIf="isItemAvailable">
+      <ion-item *ngFor="let item of items">
+        <ion-row align-items-center (click)="presentLoading(item.id, item.isopen)">
+          <ion-col size="2">
+            <img [src]="item.restaurant_logo">
+            <div class="ribbon ribbon-top-left" *ngIf="item.isopen=='0'"><span>Closed</span></div>
+            <div class="ribbon ribbon-top-left" *ngIf="item.isopen!='0'"><span style="background-color: #29ce29;">Open</span></div>
+          </ion-col>
+          <ion-col size="10">
+            <p>{{ item.restaurant_name }}</p>
+            <!-- <p [routerLink]="['/tabs/home',item.id]">{{ item.restaurant_name }}</p> -->
+          </ion-col>
+        </ion-row>
+        
+      </ion-item>
+  </ion-list>
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" shape="round" expand="block" fill="solid">Search</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <!-- <ion-text><strong>
+      <h5 no-margin>Trending Searches</h5>
+    </strong></ion-text> -->
+  <!-- <ion-row margin-vertical align-items-center class="row">
+    <div class="btn" *ngFor="let b of trending">
+      <ion-text class="filter-btn">{{b}}</ion-text>
+    </div>
+  </ion-row>
+  <div class="sep" margin-bottom></div>
+  <ion-row>
+    <ion-col size="8">
+      <ion-text><strong>
+          <h5 no-margin>Recently Viewed</h5>
+        </strong></ion-text>
+    </ion-col>
+    <ion-col size="4" text-end>
+      <ion-text [routerLink]="['/home', {'id':1}]" routerDirection="forward"><span class="view">View All</span></ion-text>
+    </ion-col>
+  </ion-row>
+  <div>
+    <ion-row>
+      <ion-row class="container-outer">
+        <div *ngFor="let spon of recent" class="container-inner">
+          <img [src]="spon.image[0]" class="spon-img">
+        </div>
+      </ion-row>
+    </ion-row>
+  </div> -->
+</ion-content>
