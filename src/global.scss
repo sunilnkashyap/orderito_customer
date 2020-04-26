@@ -171,18 +171,18 @@ ion-header {
 .searchbar-input {
     background: #FFF !important;
     border-radius: 30px !important;
-    height: 40px !important;
+    height: 32px !important;
     max-width: 100%;
-    font-size: 1.25em !important;
+    font-size: 12px !important;
     border: 1px solid transparent;
     padding-right: 10px !important;
 } 
 
 .searchbar .searchbar-search-icon {
-    color: var(--ion-color-bg); 
+    color: #000; //var(--ion-color-bg); 
 }
 .searchbar-search-icon .sc-ion-searchbar-md {
-  color:var(--ion-color-bg);
+  color: #000 !important; //var(--ion-color-bg);
 }
 .searchbar-input-container{
           .searchbar-input{
@@ -205,11 +205,12 @@ ion-header {
   position: absolute;
   background-repeat: no-repeat;
   background-size: 20px;
-  color: var(--ion-color-bg);
-
+  color: #000 !important;//var(--ion-color-text);
 }
 .searchbar-search-icon.sc-ion-searchbar-md {
-    color: #cccccc;//var(--ion-color-text);
+    color: #ccc !important; //var(--ion-color-text);
+    left: 0.5em;
+    top: 0.4em;
     pointer-events: none;
 }
 .searchbar-clear-icon .sc-ion-searchbar-md {
@@ -242,7 +243,7 @@ padding-bottom: 0px !important;
     padding-inline-start: 50px!important;
     -webkit-padding-end: 30px!important;
     padding-inline-end: 30px!important;
-    font-size: 16px!important;
+    font-size: 12px!important;
     opacity: 1 !important;
     // box-shadow: 1px 1px 9px 0px #e2e0e0;
 }
