@@ -2,3 +2,7 @@ ion-tab-bar{
 // --ion-background-color: var(--ion-color-bg);
 --color: #c2c6ce;
 }
+
+.tab-selected ion-icon {
+    font-size: 3em;
+}

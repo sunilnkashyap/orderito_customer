@@ -1,82 +1,209 @@
-ion-content{
-  --ion-background-color: #37469d;
+// ion-content{
+//   --ion-background-color: #37469d;
   
-}
-.round-shaped:focus{
-    outline:0px !important;
-}
-.round-shaped{
-    // text-align: center;
-    // background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
-    // padding: 20px;
-    // border-radius: 50%;
-    // box-shadow: 1px 1px 4px 3px var(--ion-color-primary-contrast);
-    // height: 140px;
-    // width:140px;
-    // margin: 0px auto;
-    // text-align: center;
-    // padding: 20px;
-    // border-radius: 50%;
-    // width: 140px;
-    // margin: 0 auto;
-    // margin-bottom: 15px;
-    // background: var(--ion-color-primary-tint);
-    // border: 2px solid white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 30%;
-    height: 140px;
-    width: 140px;
+// }
+// .round-shaped:focus{
+//     outline:0px !important;
+// }
+// .round-shaped{
+//     text-align: center;
+//     padding: 20px;
+//     border-radius: 30%;
+//     height: 140px;
+//     width: 140px;
+//     margin: 0 auto;
+//     margin-bottom: 15px;
+//     background: var(--ion-color-light);
+//     border: 2px solid var(--ion-color-btn);
+//     box-shadow: 2px 3px 7px 2px rgb(83, 91, 254);
+//     img{
+//         height: 70px;
+//         width: 100%;
+//         object-fit: contain;
+//     }
+//     h3{
+//         font-weight: 700;
+//         color: var(--ion-color-btn);
+//         font-size: 18px;
+//     }
+// }
+// .head{
+//     background-color: var(--ion-color-light-tint);
+//     border-radius: 10px;
+//     width: 100%;
+//     margin: 0px auto;
+//     font-size: 20px;
+//     font-weight: 700;
+//     color: var(--ion-color-bg);
+//     padding: 10px;
+// }
+// .Address{
+// 	width: 100%;
+//     font-size: 13px;
+//     color: var(--ion-color-danger-contrast);
+//     font-weight: 700;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     p{
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//     }
+// }
+// .location{
+// 	font-size: 25px;
+// 	color: var(--ion-color-danger-contrast);
+// 	margin-top: 8px;
+// }
+// .option{
+// 	font-size: 25px;
+// 	color: var(--ion-color-bg);
+// 	align-self:center;
+// }
+
+
+// ion-icon,
+// ion-button {
+//     color: #dddddd;
+// }
+
+ion-select {
+    width: 100px;
     margin: 0 auto;
-    margin-bottom: 15px;
-    background: var(--ion-color-light);
-    border: 2px solid var(--ion-color-btn);
-    // box-shadow: 2px 3px 7px 2px rgb(234, 162, 13);
-    box-shadow: 2px 3px 7px 2px rgb(83, 91, 254);
-    img{
-        height: 70px;
-        width: 100%;
-        object-fit: contain;
-    }
-    h3{
-        font-weight: 700;
-        color: var(--ion-color-btn);
-        font-size: 18px;
-        // text-shadow: 1px 2px 1px var(--ion-color-bg);
-    }
 }
-.head{
-    background-color: var(--ion-color-light-tint);
-    border-radius: 10px;
+
+.sk-p-20 {
+    padding: 10%;
+}
+
+ion-searchbar {
+    --icon-color: #000;//var(--ion-color-primary); 
+}
+
+.sk-wrapper{
+    background: #fff;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+.sk-wrapper2{
+    background: #fff;
     width: 100%;
-    margin: 0px auto;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--ion-color-bg);
-    padding: 10px;
-    // box-shadow: 1px 1px 4px 3px #edebeb;
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
 }
-.Address{
-	width: 100%;
-    font-size: 13px;
-    color: var(--ion-color-danger-contrast);
-    font-weight: 700;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    p{
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+
+.sk-wrapper img, .sk-wrapper2 img {
+    width: 50%;
+    height: 50%;
+    // border-radius: 50%;
+    margin-top:15%;
 }
-.location{
-	font-size: 25px;
-	color: var(--ion-color-danger-contrast);
-	margin-top: 8px;
+
+.sk-wrapper p, .sk-wrapper2 p{
+    margin: 0px;
+    margin-top: -3px;
+    font-size: 10px;
+    color:#000;
 }
-.option{
-	font-size: 25px;
-	color: var(--ion-color-bg);
-	// margin-top: 10px;
-	align-self:center;
+
+
+.circle-container {
+    position: relative;
+    border-radius: 50%;
+    padding: 0;
+    list-style: none;
+    margin: 8em auto 0;
+    top: 5%;
 }
+.circle-container > * {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -3em;
+    width: 6em;
+    height: 6em;
+}
+.circle-container > *:nth-of-type(1) {
+    -webkit-transform: rotate(-90deg) translate(7em) rotate(90deg);
+    transform: rotate(-90deg) translate(7em) rotate(90deg);
+}
+.circle-container > *:nth-of-type(2) {
+    -webkit-transform: rotate(-141.42deg) translate(7em) rotate(141.42deg);
+    transform: rotate(-141.42deg) translate(7em) rotate(141.42deg);
+}
+.circle-container > *:nth-of-type(3) {
+    -webkit-transform: rotate(-192.84deg) translate(7em) rotate(192.84deg);
+    transform: rotate(-192.84deg) translate(7em) rotate(192.84deg);
+}
+.circle-container > *:nth-of-type(4) {
+    -webkit-transform: rotate(-244.26deg) translate(7em) rotate(244.26deg);
+    transform: rotate(-244.26deg) translate(7em) rotate(244.26deg);
+}
+.circle-container > *:nth-of-type(5) {
+    -webkit-transform: rotate(-295.68deg) translate(7em) rotate(295.68deg);
+    transform: rotate(-295.68deg) translate(7em) rotate(295.68deg);
+}
+// .circle-container > *:nth-of-type(6) {
+//     -webkit-transform: rotate(225deg) translate(7em) rotate(-225deg);
+//     transform: rotate(225deg) translate(7em) rotate(-225deg);
+// }
+.circle-container > *:nth-of-type(7) {
+    -webkit-transform: rotate(-347.10deg) translate(7em) rotate(347.10deg);
+    transform: rotate(-347.10deg) translate(7em) rotate(347.10deg);
+}
+.circle-container > *:nth-of-type(8) {
+    -webkit-transform: rotate(-38.52deg) translate(7em) rotate(38.52deg);
+    transform: rotate(-38.52deg) translate(7em) rotate(38.52deg);
+}
+// .circle-container img {
+//     display: block;
+//     max-width: 100%;
+//     border-radius: 50%;
+//     -webkit-filter: grayscale(100%);
+//     filter: grayscale(100%);
+//     border: solid 5px tomato;
+//     -webkit-transition: 0.15s;
+//     transition: 0.15s;
+// }
+// .circle-container img:hover {
+//     -webkit-filter: grayscale(0);
+//     filter: grayscale(0);
+// }
+
+
+.sk-footer {
+    // padding: 2em;
+    text-align: center;
+}
+
+
+#gray{
+
+    height: 100%;
+    background-color: #2d348a;
+    overflow: hidden;  
+  }
+  
+  #red{
+    width: 130%;
+    height: 10em;
+    background-color: white;
+    border-radius: 100%;
+    top: 50%;
+    left: -15%;
+    right: 0;
+    position: relative;
+  }
+
+  ion-footer{
+    position: fixed;
+    bottom: -6em;
+  }
